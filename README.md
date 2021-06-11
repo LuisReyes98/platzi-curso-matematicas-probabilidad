@@ -100,3 +100,66 @@ So, ¿En dónde se aplica la probabilidad?
 Bueno, en realidad no todos los modelos probabilístico, a la hora de diseñarlo nosotros elegimos sui queremos que sea un modelo probabilístico o no.
 
 Por ejemplo si escogemos el modelo de Naive Vayes, luego de que escogemos el diseño ahora definimos el entrenamiento y este es básicamente que el modelo aprenda el concepto de distribución de probabilidad y es una manera que yo uso para saber que probabilidades le asigno una de las posibles ocurrencias de mis datos, de ahí sirgue el esquema MLE que es el estimador de máxima verosimilitud y luego de esto esta la calibración se configuran los hiper-parámetros, esto se entiende mas en redes neuronales artificiales en donde el numero de neuronas de una capa tiene 10 neuronas y cada una tiene sus propios pesos que conectan a las neuronas, entonces esos pesos los podemos ir calibrando para que el modelo sea cada vez mas pequeño. Sin embargo, hay parámetros están fuera del modelo y no se pueden calibrar y a esos parámetros les llamamos hiper-parámetros, porque están fuera de todo ese esquema de optimización. Al final se hace la optimización de los hiper parámetros. Y al final tenemos la interpretación, para interpretar hay veces que se tiene que saber el funcionamiento del modelo y aplicar conceptos de estadística para poder interpretarlo.
+
+## Tipos de probabilidad
+
+- Conjunta (joint)
+- Marginal
+- Condicional
+
+Regla del producto
+
+$$
+P(A,B) = P(A | B) * P(B)
+$$
+
+![conjunta1](./images/conjunta1.webp)
+
+Esta probabilidad de un suceso, en realidad corresponde a 2 sucesos separados y cuando yo calculo la probabilidad de 2 o mas sucesos, a eso es a lo que se le llama probabilidad conjunta.
+
+![conjunta2](./images/conjunta2.webp)
+
+La condición de “dado B en par”, lo que hizo fue restringir y paso de tener 36 posibilidades a ahora tener 18 ocurrencias distintas. Y como la probabilidad de A depende de B, entonces la llamamos probabilidad condicional.
+Ya ahora para calcular la probabilidad, nos damos cuenta que el numero de eventos exitosos no cambio, si no que lo que cambio fue el numero de eventos posibles.
+
+![conjunta3](./images/conjunta3.webp)
+
+Ahora, nos vamos a reformular le pregunta. ¿cuál es la probabilidad de que el dado B caiga en par?
+Aquí no se impone ninguna condición y yo puedo usar todo el espacio muestral completo. De la misma manera tengo 36 opciones y de esas 36 opciones, ¿cuantas corresponder al dado b en par? Son 18.
+Ahora si multiplico 9/18 * 10/36 = 1/4 y da exactamente la probabilidad conjunta.
+Por lo tanto, la probabilidad conjunta de que suceda A y B es igual a la probabilidad condicional de que suceda A dado que ya sé que sucedió B, por la probabilidad de que suceda B. Esto la resultado a la regla del producto..
+
+![conjunta4](./images/conjunta4.webp)
+
+Ahora, ¿qué es la probabilidad marginal?
+
+Es cuando se obtiene una probabilidad sencilla a partir de una probabilidad conjunta. Es decir cuando se tiene las probabilidades conjuntas de 2 sucesos y se quiere saber solo la probabilidad de que suceda el primer suceso independiente de lo que pasa con el otro, así eso se define como la suma de todas la probabilidades conjuntas sobre los demás estados que no está considerando A.
+
+La probabilidad marginal es la misma probabilidad de la regla del producto, pero la relación fundamental siempre será la regla del producto.
+
+## Ejemplos de cálculo de probabilidad
+
+### Correlaciones de eventos
+
+- A = { el resultado de lanzar un dado es 4}
+
+- B = {el resultado de lanzar un dado es par}
+
+- C = {el resultado de lanzar un dado es impar}
+
+$A = \frac{1}{6}$
+
+$P(A|B) = \frac{1}{3}$
+
+en base a esto se puede decir que A y B estan positivamente correlacionados
+
+$P(A|C) = \frac{0}{3} = 0$
+
+A y C estan negativamente correlacionados
+Por lo cual son eventos exclutentes y dependientes
+
+![correlaciones](./images/correlaciones_resumen.webp)
+
+### Reto
+
+Si el jugador 1 escoge {1,2,3,4} de las 8 opciones y el jugador 2 escoge {2,3,6,7} la probabilidad de que el jugador 2 gane dado que gano el jugador 1 es: $P(1|2) = \frac{1}{2} = 0.5$
