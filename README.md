@@ -163,3 +163,111 @@ Por lo cual son eventos exclutentes y dependientes
 ### Reto
 
 Si el jugador 1 escoge {1,2,3,4} de las 8 opciones y el jugador 2 escoge {2,3,6,7} la probabilidad de que el jugador 2 gane dado que gano el jugador 1 es: $P(1|2) = \frac{1}{2} = 0.5$
+
+## Ejemplos avanzados con probabilidad
+
+### Paradoja ¿niño o niña?
+
+1- Una mujer tiene dos bebes el mayor es varon
+2- Una mujer tiene dos bebes donde uno de ellos es varon
+
+¿Cual es la probabilidad de esta mujer que tenga dos hijos varones?
+
+|     | F   | M   |
+| --- | --- | --- |
+| M   | FM  | MM  |
+| F   | FF  | MF  |
+
+sin condiciones
+
+$$
+P(MM) = 1/4
+$$
+
+Para la situacion 1 la probabilidad seria
+
+$$
+P(MM | Mayor M) = 1/2
+$$
+
+Para la situacion 2 la probabilidad seria
+
+$$
+P(MM | alguno es M) = 1/3
+$$
+
+### El problema de Monthy hall
+
+Se tienen 3 puertas y detras de una de ellas hay un premio
+
+| P1  | P2  | P3  |
+| --- | --- | --- |
+| X   | X   | o   |
+| X   | o   | X   |
+| o   | X   | X   |
+
+Cada desicion tiene una probabilidad de ganar de 1/3
+
+Se abre la puerta 3 y no tiene premio
+
+| P1    | P2    | P3    |
+| ----- | ----- | ----- |
+| ~~X~~ | ~~X~~ | ~~o~~ |
+| X     | o     | X     |
+| o     | X     | X     |
+
+Al descartar una puerta el espacio muestral cambia y tambien la probilidad de escoger la puerta correcta cambio y ahora es de 1/2
+
+Explicacion del razonamiento
+
+dado que se escogiera la puerta 1 en la primera ronda
+
+| P1  | P2  | P3  | stay | switch |
+| --- | --- | --- | ---- | ------ |
+| X   | X   | o   | X    | o      |
+| X   | o   | X   | X    | o      |
+| o   | X   | X   | o    | X      |
+
+Es mas probable ganar al cambiar de puerta en la segunda ronda ya que el nuevo espacio muestral cambiar de puerta te da mas probabilidades de ganar.
+Eso se basa a que en la primera ronda habia 2/3 = 0.66 de probabilidad de escoger la puerta equivocada y por ello en la segunda ronda hay 2/3 de probabilidad de que al cambiar de puerta se escoja la puerta correcta
+
+## ¿Qué es una distribución?
+
+X aleatoria -> $P(X = x)$
+
+Siendo la probabilidad de ocurrencia
+
+$$
+P = f(X)
+$$
+
+$X$ -> variable aleatoria
+
+$x$ -> valores posibles en el espacio muestral
+
+Dominios discretos o cuntinuos
+
+Discreto ${1,2,3,4,5,6}$
+
+Continuo $[0, \infty]$
+
+Funcion de probabilidad acumulada
+$$
+P(x \leq X) = \int_{X \leq x}^{} P(x)dx =C(x)
+$$
+
+Al acerlo con probabilidad discreta se hace con sumas discretas
+
+Funcion de probabilidad acumulada para funciones discretas
+
+$$
+P(X \leq x) = \sum_{X \leq x} P(X)
+$$
+
+### Reto
+
+Cual es la probabilidad de la variable aleatoria tome un valor entre dos umbrales
+
+$$
+P(a \leq x \leq b) = \int_{a}^{b} F(x)dx = F(b) - F(a) = C(x)
+$$
