@@ -271,3 +271,88 @@ Cual es la probabilidad de la variable aleatoria tome un valor entre dos umbrale
 $$
 P(a \leq x \leq b) = \int_{a}^{b} F(x)dx = F(b) - F(a) = C(x)
 $$
+
+## Distribuciones discretas
+
+### Distribución de Bernoulli
+
+Variables con ocurrencias binarias
+
+Lanzamiento de monedas
+
+P(X = 1) = p
+
+P(X = 0) = 1 - p
+
+### Distribución binomial
+
+Secuencia repetitiva de eventos tipo Bernoulli
+
+Teniendo n lanzamientos de monedas
+
+Cual es la probabilidad de tener k caras
+
+P(2 caras| 3 lanzamientos) = 3/8
+
+P(k caras| n lanzamientos) = ?
+
+**Ejemplo:** con 3 lanzamientos obtener k caras
+
+- Probabilidad de tener 0 caras = 1/8
+- Probabilidad de tener 1 cara = 3/8
+- Probabilidad de tener 2 caras = 3/8
+- Probabilidad de tener 3 caras = 1/8
+
+$$
+P(k, n) = ?
+$$
+
+### Combinatorio
+
+Candidad de n formas posibles de combinar un elemento k veces
+
+$$
+{\displaystyle C_{n}^{k}={\binom {n}{k}}={\frac {n!}{k!(n-k)!}}}
+$$
+
+o
+
+$$
+{\displaystyle C_{n}^{p}={\binom {n}{p}}={\frac {n!}{p!(n-p)!}}}
+$$
+
+p -> suceso -> #estados del suceso * p
+
+### Distribucion binomial
+
+$$
+P(k caras | n lanzamientos) = P(k;n,p)
+$$
+
+$$
+P(k;n,p) = {\binom {n}{k}}p^k(1-p)^{(n-k)}
+$$
+
+### Distribucion multinomial
+
+$$
+P(X_1, ...,X_n) = \frac{n!}{k_1!...k_2!}p_1^{k_1}...p_n^{k_n}
+$$
+
+### Otras distribuciones
+
+- Poisson
+- Geométrica
+- Hipergeométrica
+- Binomial negativa
+- ...
+
+### Otras Notas
+
+Propiedades de una distribución binomial:
+
+Los sucesos son colectivamente exhaustivos, es decir, al menos uno de los 2 ha de ocurrir. Si no se es hombre, se es mujer y, si se lanza una moneda, si no sale cara ha de salir cruz.
+
+La variable aleatoria que sigue una distribución binomial se suele representar como X~(n,p), donde n representa el número de ensayos o experimentos y p la probabilidad de éxito.
+
+Los sucesos son mutuamente excluyentes, es decir, no pueden ocurrir los 2 al mismo tiempo. No se puede ser hombre y mujer al mismo tiempo o que al lanzar una moneda salga cara y cruz al mismo tiempo.
