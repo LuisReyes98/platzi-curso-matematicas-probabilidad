@@ -467,4 +467,6 @@ $$
 \min\{\frac{1}{2 \sigma^2} * \sum_i (y_i - (m * x_i + b))^2 \}
 $$
 
+![alt](http://www.sciweavers.org/tex2img.php?eq=%5Cmin%5C%7B%5Cfrac%7B1%7D%7B2%20%5Csigma%5E2%7D%20%2A%20%5Csum_i%20%28y_i%20-%20%28m%20%2A%20x_i%20%2B%20b%29%29%5E2%20%5C%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+
 Por lo tanto el problema de la regresion lineal es tambien la estimacion de una densidad de probabilidad sobre un conjunto de datos
