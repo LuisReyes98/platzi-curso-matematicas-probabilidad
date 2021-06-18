@@ -356,3 +356,115 @@ Los sucesos son colectivamente exhaustivos, es decir, al menos uno de los 2 ha d
 La variable aleatoria que sigue una distribución binomial se suele representar como X~(n,p), donde n representa el número de ensayos o experimentos y p la probabilidad de éxito.
 
 Los sucesos son mutuamente excluyentes, es decir, no pueden ocurrir los 2 al mismo tiempo. No se puede ser hombre y mujer al mismo tiempo o que al lanzar una moneda salga cara y cruz al mismo tiempo.
+
+## [C11] ¿Qué es MLE?
+
+Maximum Likelihood Estimation
+Estimacion de Maxima Verosimilitud
+
+- Escoger la distribución
+  Teniendo solo una muestra de los datos
+
+- Escoger los parametros de la distribucion
+  Que mejor ajustan la distribucion a los datos
+
+**Un problema de optimización**
+$$
+P(X;\theta) = L(X;\theta)
+$$
+
+$$
+\max L(X;\theta) \rightarrow \max \prod_i P(X_i;\theta)
+$$
+
+$$
+\max \log L(X;\theta) \rightarrow \max \sum_{i=1}\log P(X_i;\theta)
+$$
+
+### Otras notas
+
+Les dejo un artículo de Towards Data Science escrito por Johnny Brooks-Bartlett muy fácil de digerir y que complementa muy bien la introducción del profe Francisco: [Probability concepts explained: Maximum likelihood estimation](https://towardsdatascience.com/probability-concepts-explained-maximum-likelihood-estimation-c7b4342fdbb1)
+
+[Un vídeo para una demostración gráfica del MLE](https://www.youtube.com/watch?v=XepXtl9YKwc&t=87s)
+
+## MLE en machine learning
+
+ML no supervisado
+
+- Clusterizacion
+
+ML supervisado
+
+- Clasificacion
+- Regresion
+
+### Regresion lineal con MLE
+
+m: pendiente
+
+b: intercepto
+
+$b_0$: weight
+
+$b_1$: bias
+
+$$
+y = m x + b = b_0 x + b_1
+$$
+
+h: modelo
+
+$$
+P(x|y) \rightarrow \max \sum_i \log P(y_i|x_i;h)
+$$
+
+$$
+h \rightarrow y = b_0x + b_1
+$$
+
+$$
+P \rightarrow \frac{1}{\sigma \sqrt{2\pi}} \exp -\frac{1}{2}(\frac{X - \mu}{\sigma})^2
+$$
+
+### minimos cuadrados
+
+Lo comun de mostrar la regresion lineal es con el metodo de los minimos cuadrados
+
+$$
+\min \sum_i (y_i - (m * x_i + b ))^2
+$$
+
+en el cual se busca opmizar para el valor minimo de la suma de los errores
+
+### Estimacion de maxima verosimilitud
+
+$$
+\max \{ \sum_i \log P(y_i, x_i; h) \} = \max \{ \sum_i \log((\frac{1}{\sigma * \sqrt{2\pi}})*e^{-\frac{1}{2}*(\frac{y_i - (m x_i +b)}{\sigma})^2}) \}
+$$
+
+considerando
+$$
+\log(a*b) = \log(a) + \log(b)
+$$
+
+$$
+\max \{ \sum_i \log (\frac{1}{\sigma \sqrt 2 \pi}) + \sum_i \log(e * (-\frac{1}{2}) (\frac{y_i - (m * x_i + b)}{\sigma})^2) \}
+$$
+
+el primer termino $\sum_i \log (\frac{1}{\sigma \sqrt 2 \pi})$ se puede despreciar para la optimización ya que representa un valor constante
+
+y al ser $e(x)$ y $\log (x)$ operaciones inversas nos queda la siguiente formula
+
+$$
+\max \{ \sum_i (-\frac{1}{2}) (\frac{y_i - (m * x_i + b)}{\sigma})^2  \}
+$$
+
+para quitar el signo negativo se cambia al minimo
+
+porque **El maximo de numeros negativos es equivalente al minimo de esos mismos numeros pero en valor absoluto** entonces:
+
+$$
+\min\{\frac{1}{2 \sigma^2} * \sum_i (y_i - (m * x_i + b))^2 \}
+$$
+
+Por lo tanto el problema de la regresion lineal es tambien la estimacion de una densidad de probabilidad sobre un conjunto de datos
