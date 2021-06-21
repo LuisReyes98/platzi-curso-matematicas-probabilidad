@@ -468,3 +468,30 @@ $$
 $$
 
 Por lo tanto el problema de la regresion lineal es tambien la estimacion de una densidad de probabilidad sobre un conjunto de datos
+
+## Regresión logística
+
+Estimacion de maxima verosimilitud
+
+Resuelve problemas de clasificación
+
+Se tiene un conjunto de Atributos X_n
+
+y en base a esos atributos se les busca calcular una combinacion lineal en la cual a cada atributo se le asigna un peso "beta" a cada uno,
+
+en otras palabras se realiza una sumatoria de todos los atributos donde cada atributo individual es multiplicado por un peso diferente
+
+para que a la hora de clasificarlos con la regresion logistica, los valores se aproximen lo mas posible a un valor de 0 o 1 en la curva
+
+por lo cual los valores que se buscan optimizar son los pesos con los cuales los resultados de la sumatoria sean valores lo mas cercanos a 1 o lo mas cercanos a 0 posible
+
+![notes 1](./images/regresion_logistica_atributos.png)
+
+![notes 2](./images/regresion_logistica_atributos_2.png)
+
+![notes 3](./images/regresion_logistica_atributos_3.png)
+
+### Notas alumnos
+
+![notes_alumnos1](./images/regresion_logistica.webp)
+![notes_alumnos2](./images/regresion_logistica_2.webp)
