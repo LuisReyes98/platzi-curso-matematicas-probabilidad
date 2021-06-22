@@ -495,3 +495,23 @@ por lo cual los valores que se buscan optimizar son los pesos con los cuales los
 
 ![notes_alumnos1](./images/regresion_logistica.webp)
 ![notes_alumnos2](./images/regresion_logistica_2.webp)
+
+## [C15] Teorema de Bayes
+
+$$
+P(A\mid B)=\frac {P(B\mid A) \cdot P(A)}{P(B)}
+$$
+
+$A, B$ = events
+$P(A|B)$ = probability of A given B is true
+$P(B|A)$ = probability of B given A is true
+$P(A), P(B)$ = the independent probabilities of A and B
+
+$P(B)$ = Evidencia
+
+$P(B\mid A)$ = verosimilitud
+
+$P(A)$ = Priori
+
+$P(A\mid B)$ = posteriori
+
