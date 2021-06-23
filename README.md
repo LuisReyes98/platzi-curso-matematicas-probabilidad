@@ -503,8 +503,8 @@ P(A\mid B)=\frac {P(B\mid A) \cdot P(A)}{P(B)}
 $$
 
 $A, B$ = events
-$P(A|B)$ = probability of A given B is true
-$P(B|A)$ = probability of B given A is true
+$P(A\mid B)$ = probability of A given B is true
+$P(B\mid A)$ = probability of B given A is true
 $P(A), P(B)$ = the independent probabilities of A and B
 
 $P(B)$ = Evidencia
@@ -515,3 +515,76 @@ $P(A)$ = Priori
 
 $P(A\mid B)$ = posteriori
 
+Ejemplo:
+
+Test Médico: mamografía (sensitividad 80%)
+
+La sentividad de 80% se refiere que sabiendo que se tiene cancer la maquina tiene un 80% de probabilidad de detectar el cancer
+
+$$
+\begin{cases}
+y \rightarrow cancer\\
+x \rightarrow examen
+\end{cases}
+$$
+
+Probabilidad de que la maquina de positivo teneniendo cancer
+$P(x=1 \mid y = 1) = 80\% = 0.8$   Verosimilud
+
+La crencia inicial de tener cancer sin ningun tipo de sintomas o conocimiento previo
+
+$P(y = 1) = 0.004$  Prior
+
+Probabilidad de un falso positivo
+
+$P(x=1 \mid y=0) = 0.1$$
+
+Con Bayes calculamos
+La Probabilidad de tener cancer dado que la maquina dio positivo
+$$
+P(y=1\mid x=1)=\frac {P(x=1 \mid y=1) \cdot P(y=1)}{P(x=1)}
+$$
+
+Cual es la Evidencia ?
+
+Es la probabilidad de X
+
+la probabilidad marginal seria
+
+$$
+P(X) = \sum_y P(x,y)
+$$
+
+considerando la regla del producto
+
+$$
+P(x) = \sum_y P(x \mid y) \cdot P(y)
+$$
+
+$$
+P(x=1) = \sum_y P(x=1 \mid y) \cdot P(y)
+$$
+
+$$
+P(x=1) = P(x=1 \mid y = 1) \cdot P(y=1) + P(x=1 \mid y = 0) \cdot P(y=0)
+$$
+
+$$
+P(x=1) = 0.8 \cdot 0.004 + 0.1 \cdot 0.996
+$$
+
+$$
+P(x=1) = 0.8 \cdot 0.004 + 0.1 \cdot 0.996
+$$
+
+$$
+P(x=1) = 0.1028
+$$
+
+Entonces esta probabilidad posterior es igual a
+
+$$
+P(y=1 \mid x=1) = \frac{0.8 \cdot 0.004}{0.1028} = 0.031 = 3.1\%
+$$
+
+La probabilidad de tener cancer si el examen da positivo sin tener ningun tipo de sintoma previo es del 3.1%
