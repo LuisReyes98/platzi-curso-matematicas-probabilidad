@@ -588,3 +588,29 @@ P(y=1 \mid x=1) = \frac{0.8 \cdot 0.004}{0.1028} = 0.031 = 3.1\%
 $$
 
 La probabilidad de tener cancer si el examen da positivo sin tener ningun tipo de sintoma previo es del 3.1%
+
+## Bayes en machine learning
+
+Donde
+h = hipotesis
+D = Datos
+
+Dado un conjunto de datos cual es la probabilidad de tener una hipotesis que describa ese conjunto de datos
+
+$$
+P( h \mid D) = \frac{P(D \mid h) \cdot P(h)}{P(D)}
+$$
+
+$$
+\max P(h \mid D) \rightarrow \max P(D \mid h)P(h)
+$$
+
+optimizar la probabilidad de los datos/evidencia se desprecia ya que siempre sera la misma probabilidad
+
+![bayes_ml](./images/bayes_ml.png)
+
+En machine learning ya que el especio muestral (conjunto de datos) suele ser demasiado grande como para poder calcular las probabilidades con todo el espacio muestral
+
+si se llega a calcular la probabilidad con todo el espacio muestral se define al modelo como **Optimal Bayes**
+
+Lo que se suele hacer para no tomar todo el espacio muestral es calcular la probabilidad por separado de cada punto del espacio muestral y calcular el producto de todas estas probabilidades. Los modelos de este tipo se definen como **Naive Bayes**
