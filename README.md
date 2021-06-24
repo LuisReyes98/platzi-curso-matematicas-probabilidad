@@ -149,6 +149,8 @@ La probabilidad marginal es la misma probabilidad de la regla del producto, pero
 
 $A = \frac{1}{6}$
 
+$B = \frac{3}{6}$
+
 $P(A|B) = \frac{1}{3}$
 
 en base a esto se puede decir que A y B estan positivamente correlacionados
