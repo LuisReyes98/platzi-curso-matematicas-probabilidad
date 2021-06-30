@@ -389,6 +389,8 @@ Les dejo un artículo de Towards Data Science escrito por Johnny Brooks-Bartlett
 
 [Un vídeo para una demostración gráfica del MLE](https://www.youtube.com/watch?v=XepXtl9YKwc&t=87s)
 
+[Explicacion](https://economipedia.com/definiciones/estimacion-de-maxima-verosimilitud.html)
+
 ## MLE en machine learning
 
 ML no supervisado
@@ -470,6 +472,10 @@ $$
 $$
 
 Por lo tanto el problema de la regresion lineal es tambien la estimacion de una densidad de probabilidad sobre un conjunto de datos
+
+### Otras Notas
+
+![MLE_in_ML](./images/MLE_in_ML.webp)
 
 ## Regresión logística
 
