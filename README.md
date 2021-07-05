@@ -4,7 +4,11 @@
 
 ## ¿Qué es la probabilidad?
 
-Axiomas de la probabilidad
+### Definicion Matemática
+
+En matematica definimos la probabilidad como el lenguaje que nos da herramientas para cuantificar la incertidumbre
+
+### Axiomas de la probabilidad
 
 - Suceso elemental
   el resultado de lanzar un dado es 4
@@ -12,9 +16,23 @@ Axiomas de la probabilidad
 - Suceso
   El resultado de lanzar un dado es par
 
-$
-P = \frac{N° sucesos exitosos}{N° sucesos totales}
-$
+$$
+P = \frac{\text{N° sucesos exitosos}}{\text{N° sucesos totales}}
+$$
+
+La probabilidad es del 0% o del 100%
+
+$$
+0 \leqslant P \leqslant 1
+$$
+
+Certeza $P = 1$
+
+Imposibilidad $P = 0$
+
+Eventos disjuntos son eventos que no pueden ocurrir al mismo tiempo, por lo cual la probabilidad de que ocurra uno o el otro es una suma
+
+$P(A ∪ B) = P(A) +P(B)$
 
 ### RESUMEN: ¿Qué es probabilidad?
 
@@ -65,10 +83,11 @@ La probabilidad que se asigna como un valor a cada posible suceso tiene varias p
 
 #### PROPIEDADES AXIOMAS:
 
-0 <= P <= 1
-Certeza: P = 1
-Imposibilidad P = 0
-Disyunción P(AuB) = P(A) +P(B)
+$0 <= P <= 1$
+Certeza: $P = 1$
+Imposibilidad $P = 0$
+Disyunción $P(A ∪
+ B) = P(A) +P(B)$
 
 ![probabilidad-1](./images/probabilidad-1.webp)
 ![probabilidad-2](./images/probabilidad-2.webp)
@@ -99,7 +118,7 @@ So, ¿En dónde se aplica la probabilidad?
 
 Bueno, en realidad no todos los modelos probabilístico, a la hora de diseñarlo nosotros elegimos sui queremos que sea un modelo probabilístico o no.
 
-Por ejemplo si escogemos el modelo de Naive Vayes, luego de que escogemos el diseño ahora definimos el entrenamiento y este es básicamente que el modelo aprenda el concepto de distribución de probabilidad y es una manera que yo uso para saber que probabilidades le asigno una de las posibles ocurrencias de mis datos, de ahí sirgue el esquema MLE que es el estimador de máxima verosimilitud y luego de esto esta la calibración se configuran los hiper-parámetros, esto se entiende mas en redes neuronales artificiales en donde el numero de neuronas de una capa tiene 10 neuronas y cada una tiene sus propios pesos que conectan a las neuronas, entonces esos pesos los podemos ir calibrando para que el modelo sea cada vez mas pequeño. Sin embargo, hay parámetros están fuera del modelo y no se pueden calibrar y a esos parámetros les llamamos hiper-parámetros, porque están fuera de todo ese esquema de optimización. Al final se hace la optimización de los hiper parámetros. Y al final tenemos la interpretación, para interpretar hay veces que se tiene que saber el funcionamiento del modelo y aplicar conceptos de estadística para poder interpretarlo.
+Por ejemplo si escogemos el modelo de Naive Bayes, luego de que escogemos el diseño ahora definimos el entrenamiento y este es básicamente que el modelo aprenda el concepto de distribución de probabilidad y es una manera que yo uso para saber que probabilidades le asigno una de las posibles ocurrencias de mis datos, de ahí sirgue el esquema MLE que es el estimador de máxima verosimilitud y luego de esto esta la calibración se configuran los hiper-parámetros, esto se entiende mas en redes neuronales artificiales en donde el numero de neuronas de una capa tiene 10 neuronas y cada una tiene sus propios pesos que conectan a las neuronas, entonces esos pesos los podemos ir calibrando para que el modelo sea cada vez mas pequeño. Sin embargo, hay parámetros están fuera del modelo y no se pueden calibrar y a esos parámetros les llamamos hiper-parámetros, porque están fuera de todo ese esquema de optimización. Al final se hace la optimización de los hiper parámetros. Y al final tenemos la interpretación, para interpretar hay veces que se tiene que saber el funcionamiento del modelo y aplicar conceptos de estadística para poder interpretarlo.
 
 ## Tipos de probabilidad
 
@@ -111,6 +130,10 @@ Regla del producto
 
 $$
 P(A,B) = P(A | B) * P(B)
+$$
+
+$$
+P(A ∩ B) = P(A|B)P(B)
 $$
 
 ![conjunta1](./images/conjunta1.webp)
@@ -359,6 +382,85 @@ La variable aleatoria que sigue una distribución binomial se suele representar 
 
 Los sucesos son mutuamente excluyentes, es decir, no pueden ocurrir los 2 al mismo tiempo. No se puede ser hombre y mujer al mismo tiempo o que al lanzar una moneda salga cara y cruz al mismo tiempo.
 
+## [C10] ¿Cómo estimar una distribución?
+
+Notas alumnos (Ivan Ezequiel Mazzalay)
+
+### Estimación Paramétrica
+
+Se basa realizar el cálculo de una distribución teórica, cuyos parámetros se basan en la información o en el conjunto de datos con el que estamos trabajando.
+
+En el ejemplo en clase, primero se calcula un conjunto de datos aleatorios, que sigue a una distribución normal, cuya media será 50 y el desvío estandar será de 5. Esto se genera a partir de la siguiente línea de código:
+
+```python
+sample = normal(loc = 50, scale = 5, size = 1000) #Donde loc es la media y scale el desvío estandar
+```
+
+![Normal](./images/normal-dist.jpeg)
+
+El siguiente paso es calcular una función teórica que se ajuste al conjunto de datos. En este caso se conoce la media y el desvío porque los colocamos nosotros para realizar la simulación, pero en una situación real, se debe calcular la media y el desvío tal como lo hizo el profe, y esto se ve en la siguiente línea de código:
+
+```python
+mu = sample.mean()
+sigma = sample.std()
+```
+
+Con estos valores, se crea una instancia de un objeto cuyos parámetros son precisamente mu y sigma. Es decir, tenemos la base para aplicar la fórmula de la función de distribución Gauseana, pero nos fatan los valores sobre los cuales vamos a calcular esas probabilidades. Entonces primero se crea el objeto y luego se genera un array cuyo rango va a variar entre los extremos de los datos reales y calculamos las probabilidades. Todo esto se ejecuta en las siguientes líneas de código:
+
+```python
+dist = norm(mu, sigma)
+values = [value for value in range(30,70)]
+probabilidades = [dist.pdf(value) for value in values]
+```
+
+Si graficamos ahora solo la función teórica nos queda lo siguiente:
+
+![Normal](./images/normal_teorica.jpeg)
+
+Finalmente, graficamos los datos y la curva teórica calculada y observamos que se asemejan.
+
+![Normal](./images/curva_ajustada.jpeg)
+
+### Estimación No Paramétrica
+
+Este proceso se aplica cuando los datos no se ajustan a una distribución conocida. Entonces no forzamos ajustar los datos a una única distribución, sino a un conjunto de distribuciones.
+
+En este ejemplo, el profe utiliza un método que ya viene incluído dentro de la librería de ScikitLearn, el cual se llama Kernel Density Estimation. Para ello, primero se simulan dos conjuntos de datos a través de dos funciones normales y se juntan en luego en una sola variable a través del método hstack(). Esto lo vemos en las siguientes líneas del código:
+
+```python
+sample1 = normal(loc = 20, scale = 5, size = 300)
+sample2 = normal(loc = 40, scale = 5, size = 700)
+sample = hstack((sample1, sample2))
+```
+
+El resultado lo vemos en la siguiente imagen:
+
+![dis](./images/dist_bimodal.jpeg)
+
+Luego, una vez que tenemos los datos simulados, comienza el proceso de estimación, para ello se crea un objeto modelo, el cual se instancia a través de los parámetros bandwidth (parámetro de suavizado) y kernel (funciones de distribución que se usan para la estimación). Esto es equivalente al método anterior, donde teníamos la función normal teórica, y luego calculábamos las probabilidades, solo que ahora no tenemos solo una función de densidad de probabilidad, sino un conjunto de distribuciones. Una vez creado el objeto, se ajustan los datos a las necesidades del objeto, para esto se utiliza el método reshape, el cual los ordena en una matriz de 1000 filas y 1 columna y luego se ajusta el modelo a estos datos. Esto se hace con las siguientes líneas de codigo:
+
+```python
+model = KernelDensity(bandwidth = 2, kernel = 'gaussian')
+sample = sample.reshape((len(sample), 1))
+model.fit(sample)
+```
+
+Ahora, como dije antes, estamos ajustando el modelo a los datos, es como si estuvieramos calculando la media y el desvío estandar de una distribución normal pero nos faltan calcular los promodios para darle forma a la función teórica. Esto es lo que hacemos a continuación, se crea un array en el rango de los datos reales sobre cuales queremos estimar la función, y luego calculamos las probabilidades. Esto se hace en las siguientes líneas del código. Una aclaración, el cálculo de forma logarítimica tiene que ver con la complejidad algorítmica, es una cuestión de eficiencia. Luego a través de función inversa, la exponencial, obtenemos las probabilidades.
+
+```python
+values = np.asarray([value for value in range(1, 60)])
+values = values.reshape((len(values), 1))
+probabilities = model.score_samples(values) #probabilidad logarítmica para facilitar los calculos
+probabilities = np.exp(probabilities)  # inversión de probabilidad obtenemos el valor original
+```
+
+Esto nos devuelve la siguiente curva:
+
+![dist no parametrica teorica](./image/../images/dist_bimodal_teorica.jpeg)
+
+La cual, en conjunto con los datos finalmente queda de la siguiente forma:
+
+![curva bimodal](./images/curba_bimodal_estimacion.jpeg)
 ## [C11] ¿Qué es MLE?
 
 Maximum Likelihood Estimation
@@ -473,11 +575,13 @@ $$
 
 Por lo tanto el problema de la regresion lineal es tambien la estimacion de una densidad de probabilidad sobre un conjunto de datos
 
+El likelihood es la probabilidad que una distribución modele correctamente dado un conjunto de datos
+
 ### Otras Notas
 
 ![MLE_in_ML](./images/MLE_in_ML.webp)
 
-## Regresión logística
+## [C13] Regresión logística
 
 Estimacion de maxima verosimilitud
 
@@ -492,6 +596,9 @@ en otras palabras se realiza una sumatoria de todos los atributos donde cada atr
 para que a la hora de clasificarlos con la regresion logistica, los valores se aproximen lo mas posible a un valor de 0 o 1 en la curva
 
 por lo cual los valores que se buscan optimizar son los pesos con los cuales los resultados de la sumatoria sean valores lo mas cercanos a 1 o lo mas cercanos a 0 posible
+
+Para poder calcular el error de una regresion logistica
+se calcula la **Cross-Entropy** la cual es la función de costo o error en clasificacion binaria, ya que el minimo de esa funcion es igual a calcular el maximo de la verosimilitud del conjunto de datos
 
 ![notes 1](./images/regresion_logistica_atributos.png)
 
@@ -622,3 +729,7 @@ En machine learning ya que el especio muestral (conjunto de datos) suele ser dem
 si se llega a calcular la probabilidad con todo el espacio muestral se define al modelo como **Optimal Bayes**
 
 Lo que se suele hacer para no tomar todo el espacio muestral es calcular la probabilidad por separado de cada punto del espacio muestral y calcular el producto de todas estas probabilidades. Los modelos de este tipo se definen como **Naive Bayes**
+
+$$
+P(D|h)=P(x1|h) * P(x2|h)* ... * (xn|h)
+$$
